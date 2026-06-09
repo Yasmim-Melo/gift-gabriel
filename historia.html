@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nossa Historia | Nosso Cantinho</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain"></div>
+
+  <header class="topbar">
+    <a class="brand" href="index.html">Nosso Cantinho</a>
+    <nav class="menu">
+      <a href="index.html">Inicio</a>
+      <a href="album.html">Album</a>
+      <a href="recados.html">Recados</a>
+      <a class="active" href="historia.html">Nossa Historia</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <p class="hero-kicker">Tempo & Futuro</p>
+    <h1>Nossa Historia, Memorias e Metas</h1>
+    <p class="hero-sub">Um lugar para guardar os momentos que ja aconteceram e os sonhos que ainda vamos viver.</p>
+  </section>
+
+  <main class="section-shell">
+    <section class="card cinematic">
+      <h2>Linha do Tempo</h2>
+      <form id="timelineForm" class="note-form">
+        <input id="timelineDate" type="date" required />
+        <input id="timelineTitle" type="text" maxlength="80" placeholder="Titulo do momento" required />
+        <textarea id="timelineText" rows="3" maxlength="400" placeholder="Descreva essa memoria" required></textarea>
+        <button type="submit">Adicionar momento</button>
+      </form>
+      <div id="timelineList" class="timeline-list"></div>
+    </section>
+
+    <section class="card cinematic">
+      <h2>Metas do Casal</h2>
+      <form id="goalForm" class="note-form">
+        <input id="goalTitle" type="text" maxlength="90" placeholder="Ex: Viajar juntos para a praia" required />
+        <textarea id="goalText" rows="3" maxlength="300" placeholder="Detalhe da meta" required></textarea>
+        <button type="submit">Adicionar meta</button>
+      </form>
+      <div id="goalsList" class="goals-list"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Do primeiro beijo ao para sempre.</p>
+  </footer>
+
+  <script src="historia.js"></script>
+</body>
+</html>

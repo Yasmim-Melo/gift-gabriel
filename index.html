@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nosso Cantinho</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain"></div>
+
+  <header class="topbar">
+    <a class="brand" href="index.html">Nosso Cantinho</a>
+    <nav class="menu">
+      <a class="active" href="index.html">Inicio</a>
+      <a href="album.html">Album</a>
+      <a href="recados.html">Recados</a>
+      <a href="historia.html">Nossa Historia</a>
+    </nav>
+  </header>
+
+  <section class="hero friendly">
+    <p class="hero-kicker">Presente de Dia dos Namorados</p>
+    <h1 id="heroTitle">Yasmin + Gabriel</h1>
+    <p id="heroSubtitle" class="hero-sub">Um espacinho amoroso para guardar musica, bilhetes e momentos especiais.</p>
+    <p id="coupleHeadline" class="hero-couple">Juntos desde 30/05/2024.</p>
+    <a href="#painel" class="cta">Explorar nosso cantinho</a>
+  </section>
+
+  <main id="painel" class="layout">
+    <section class="card cinematic varal-card">
+      <h2>Varal de Polaroids</h2>
+      <p>Escolha ate 3 fotos para ficar no nosso varal. Ao passar o mouse, elas ficam tortinhas.</p>
+      <div class="polaroid-row">
+        <article class="polaroid-frame">
+          <div class="clip"></div>
+          <img id="polaroidImg1" alt="Polaroid 1" />
+          <label class="polaroid-upload" for="polaroidInput1">Escolher foto 1</label>
+          <input id="polaroidInput1" type="file" accept="image/*" hidden />
+        </article>
+
+        <article class="polaroid-frame">
+          <div class="clip"></div>
+          <img id="polaroidImg2" alt="Polaroid 2" />
+          <label class="polaroid-upload" for="polaroidInput2">Escolher foto 2</label>
+          <input id="polaroidInput2" type="file" accept="image/*" hidden />
+        </article>
+
+        <article class="polaroid-frame">
+          <div class="clip"></div>
+          <img id="polaroidImg3" alt="Polaroid 3" />
+          <label class="polaroid-upload" for="polaroidInput3">Escolher foto 3</label>
+          <input id="polaroidInput3" type="file" accept="image/*" hidden />
+        </article>
+      </div>
+    </section>
+
+    <section class="card cinematic">
+      <h2>Assinatura do Amor</h2>
+      <p>Personalize como quiser. Ja deixei preenchido com voces dois.</p>
+      <form id="nameForm" class="note-form">
+        <input id="fromName" type="text" maxlength="30" placeholder="Seu nome" required />
+        <input id="toName" type="text" maxlength="40" placeholder="Nome de quem voce ama" required />
+        <input id="relationshipDate" type="date" />
+        <button type="submit">Salvar assinatura</button>
+      </form>
+      <p id="nameFeedback" class="feedback"></p>
+    </section>
+
+    <section class="card turntable-card retro-card cinematic">
+      <span class="card-chip">♥ RETRO LOVE</span>
+      <h2>Vitrola do Amor</h2>
+      <p>Ouca lindas cancoes. Curta o sintetizador retro.</p>
+      <div class="retro-switch" aria-hidden="true">
+        <button class="retro-switch-btn active" type="button" id="loadMediaBtn">Sintetizador Retro</button>
+        <button class="retro-switch-btn" type="button" id="playlistBtn">Playlist Spotify</button>
+      </div>
+      <div class="turntable">
+        <div class="turntable-lid"><span>LOVE</span></div>
+        <div class="deck">
+          <div class="deck-top"></div>
+          <div class="vinyl" id="vinyl"><div class="vinyl-center"></div></div>
+          <div class="tonearm" id="tonearm"></div>
+          <div class="turntable-front">
+            <div class="speaker"></div>
+            <div class="latch-group">
+              <span class="latch"></span>
+              <span class="switcher"></span>
+              <span class="latch"></span>
+            </div>
+            <div class="speaker"></div>
+          </div>
+          <div class="handle"></div>
+        </div>
+      </div>
+      <button id="playVinylBtn" class="retro-play" type="button">▶ TOCAR MELODIA</button>
+      <div class="player-controls compact">
+        <input id="mediaUrl" type="url" placeholder="Cole o link aqui" />
+        <div class="row">
+          <select id="mediaType">
+            <option value="auto">Detectar automatico</option>
+            <option value="spotify">Spotify</option>
+            <option value="youtube">YouTube</option>
+          </select>
+          <button class="secondary" type="button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">Topo</button>
+        </div>
+        <p id="playerFeedback" class="feedback"></p>
+      </div>
+      <div class="embed-shell" id="embedShell" hidden>
+        <iframe id="mediaFrame" title="Player" loading="lazy" allow="autoplay; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      </div>
+    </section>
+
+    <section class="card cinematic">
+      <h2>Trilha Sonora de Fundo</h2>
+      <p>Use uma musica em mp3 para tocar no site inteiro.</p>
+      <div class="note-form">
+        <input id="bgMusicUrl" type="url" placeholder="https://...arquivo.mp3" />
+        <input id="bgMusicFile" type="file" accept="audio/*" />
+        <div class="row">
+          <button id="applyBgMusicBtn" type="button">Aplicar trilha</button>
+          <button id="startBgMusicBtn" class="secondary" type="button">Iniciar</button>
+          <button id="stopBgMusicBtn" class="secondary" type="button">Parar</button>
+        </div>
+        <label for="bgVolume">Volume</label>
+        <input id="bgVolume" type="range" min="0" max="1" step="0.01" value="0.35" />
+      </div>
+      <p id="bgMusicFeedback" class="feedback"></p>
+    </section>
+
+    <section class="card cinematic">
+      <h2>Caixa de Correio</h2>
+      <p>Receba um bilhete e abra ou feche quando quiser.</p>
+      <div class="mailbox-wrap">
+        <svg class="mailbox-svg" viewBox="0 0 160 200" aria-hidden="true">
+          <path d="M 30 180 C 30 50, 130 50, 130 180 Z" fill="#7a1717" stroke="#c4685c" stroke-width="4.5" stroke-linejoin="round" />
+          <path d="M 30 180 L 130 180" stroke="#c4685c" stroke-width="4.5" />
+          <path d="M 45 105 L 115 105 A 35 35 0 0 1 115 170 L 45 170 Z" fill="#4a0404" opacity="0.24" />
+          <rect x="45" y="110" width="70" height="60" rx="4" fill="none" stroke="#f0c5bd" stroke-width="1.5" opacity="0.7" />
+          <path d="M 77 140 C 74 137, 72 139, 72 142 C 72 145, 80 152, 80 152 C 80 152, 88 145, 88 142 C 88 139, 86 137, 83 140 L 80 143 Z" fill="#111111" />
+          <rect x="45" y="70" width="70" height="24" rx="4" fill="#f8ddd7" stroke="#d2b0a8" stroke-width="2" />
+          <rect x="52" y="76" width="56" height="12" rx="2" fill="#1a1a1a" />
+          <text x="80" y="55" fill="#fff6f4" font-family="Cinzel, serif" font-size="13" text-anchor="middle" font-weight="700">Post</text>
+          <g class="mailbox-flag-group" id="mailboxFlag">
+            <circle cx="130" cy="115" r="5" fill="#9E9E9E" stroke="#555555" stroke-width="1" />
+            <rect x="127" y="115" width="6" height="60" fill="#424242" rx="1" />
+            <path d="M 125 180 C 117 172, 117 165, 122 165 C 127 165, 130 170, 130 170 C 130 170, 133 165, 138 165 C 143 165, 143 172, 135 180 L 130 185 Z" fill="#d67d6f" stroke="#a95247" stroke-width="1.2" />
+          </g>
+        </svg>
+        <div id="mailLetter" class="mail-letter"><p id="mailText">Seu bilhete aparece aqui.</p></div>
+      </div>
+      <div class="row">
+        <button id="newLetterBtn" type="button">Novo bilhete</button>
+        <button id="toggleLetterBtn" class="secondary" type="button">Abrir bilhete</button>
+      </div>
+    </section>
+
+    <section class="card jackpot-card cinematic">
+      <span class="card-chip">✣ JACKPOT</span>
+      <h2>Maquininha de Surpresas</h2>
+      <p>Puxe a alavanca do Amor para girar os rolos.</p>
+      <div class="ticket-machine">
+        <div class="machine-crown">
+          <span>LOVE STRUCK</span>
+          <small>JACKPOT</small>
+        </div>
+        <div class="machine-glass">
+          <div class="slot-reels" id="slotReels">
+            <span class="reel">🌷</span>
+            <span class="reel">🎀</span>
+            <span class="reel">❤️</span>
+          </div>
+        </div>
+        <div class="machine-knob-rail"></div>
+        <button class="machine-knob" id="machineKnob" type="button" aria-label="Puxar alavanca">∞</button>
+        <div class="machine-slot"></div>
+        <div class="machine-base-text">YOU MAKE MY HEART SPIN</div>
+        <div class="capsule" id="capsule"></div>
+      </div>
+      <button id="spinMachineBtn" type="button">Girar manivela</button>
+      <p id="capsuleMessage" class="feedback"></p>
+    </section>
+
+    <section class="card cinematic">
+      <h2>Jogo da Velha do Amor</h2>
+      <p>Voce (X) contra o Cupido (O).</p>
+      <div id="board" class="board" aria-label="Jogo da velha"></div>
+      <div class="row game-row">
+        <p id="gameStatus" class="feedback">Sua vez: X</p>
+        <button id="resetGameBtn" class="secondary" type="button">Reiniciar</button>
+      </div>
+    </section>
+
+    <section class="card cinematic links-card">
+      <h2>Paginas Especiais</h2>
+      <p>Organizei cada parte em paginas dedicadas.</p>
+      <div class="quick-links">
+        <a href="album.html">Abrir Album</a>
+        <a href="recados.html">Abrir Recados</a>
+        <a href="historia.html">Abrir Nossa Historia</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Com carinho para Gabriel.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

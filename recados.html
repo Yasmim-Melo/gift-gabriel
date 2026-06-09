@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recados | Nosso Cantinho</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain"></div>
+
+  <header class="topbar">
+    <a class="brand" href="index.html">Nosso Cantinho</a>
+    <nav class="menu">
+      <a href="index.html">Inicio</a>
+      <a href="album.html">Album</a>
+      <a class="active" href="recados.html">Recados</a>
+      <a href="historia.html">Nossa Historia</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <p class="hero-kicker">Cartinhas</p>
+    <h1>Recados Para Gabriel</h1>
+    <p class="hero-sub">Escreva cartas, bilhetes e mensagens para guardar aqui.</p>
+  </section>
+
+  <main class="section-shell">
+    <section class="card cinematic">
+      <h2>Novo Recado</h2>
+      <form id="noteForm" class="note-form">
+        <input id="noteTitle" type="text" maxlength="60" placeholder="Titulo do recado" required />
+        <textarea id="noteBody" rows="4" maxlength="700" placeholder="Escreva a carta" required></textarea>
+        <button type="submit">Salvar recado</button>
+      </form>
+      <p id="noteFeedback" class="feedback"></p>
+    </section>
+
+    <section class="card cinematic">
+      <h2>Bilhete Rapido</h2>
+      <p>Quer uma frase pronta para enviar agora?</p>
+      <button id="quickMessageBtn" type="button">Gerar bilhete fofo</button>
+      <p id="quickMessageText" class="feedback"></p>
+    </section>
+
+    <section class="card cinematic">
+      <h2>Lista de Recados</h2>
+      <div id="notesList" class="notes-list"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Palavras que aquecem o coracao.</p>
+  </footer>
+
+  <script src="recados.js"></script>
+</body>
+</html>
