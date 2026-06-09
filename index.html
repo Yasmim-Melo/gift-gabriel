@@ -6,34 +6,62 @@
   <title>Nosso Cantinho</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Nunito:wght@400;600;700&family=Parisienne&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="grain"></div>
+  <div class="floating-hearts" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 
   <header class="topbar">
     <a class="brand" href="index.html">Nosso Cantinho</a>
     <nav class="menu">
-      <a class="active" href="index.html">Inicio</a>
-      <a href="album.html">Album</a>
+      <a class="active" href="index.html">Início</a>
+      <a href="album.html">Álbum</a>
       <a href="recados.html">Recados</a>
-      <a href="historia.html">Nossa Historia</a>
+      <a href="historia.html">Nossa História</a>
     </nav>
   </header>
 
   <section class="hero friendly">
     <p class="hero-kicker">Presente de Dia dos Namorados</p>
-    <h1 id="heroTitle">Yasmin + Gabriel</h1>
-    <p id="heroSubtitle" class="hero-sub">Um espacinho amoroso para guardar musica, bilhetes e momentos especiais.</p>
+    <p class="hero-script">feito com carinho, para você</p>
+    <h1 id="heroTitle">Yasmim + Gabriel</h1>
+    <p id="heroSubtitle" class="hero-sub">Um espacinho amoroso para guardar música, bilhetes e momentos especiais.</p>
     <p id="coupleHeadline" class="hero-couple">Juntos desde 30/05/2024.</p>
+    <p class="hero-note">Cada parte desse cantinho foi pensada para parecer uma lembrança guardada na gaveta mais bonita do coração.</p>
     <a href="#painel" class="cta">Explorar nosso cantinho</a>
   </section>
 
   <main id="painel" class="layout">
+    <section class="card cinematic counter-card">
+      <h2>O Contador do Nosso Amor</h2>
+      <p>Quanto tempo nosso coracao ja caminha juntinho.</p>
+      <div class="time-counter" id="timeCounter" aria-live="polite">
+        <article>
+          <strong id="timeDays">0</strong>
+          <span>dias</span>
+        </article>
+        <article>
+          <strong id="timeHours">0</strong>
+          <span>horas</span>
+        </article>
+        <article>
+          <strong id="timeMinutes">0</strong>
+          <span>minutos</span>
+        </article>
+      </div>
+    </section>
+
     <section class="card cinematic varal-card">
       <h2>Varal de Polaroids</h2>
-      <p>Escolha ate 3 fotos para ficar no nosso varal. Ao passar o mouse, elas ficam tortinhas.</p>
+      <p>Escolha ate 3 fotos para ficar no nosso varal. Na home, elas so balancam de lado no hover.</p>
       <div class="polaroid-row">
         <article class="polaroid-frame">
           <div class="clip"></div>
@@ -58,22 +86,10 @@
       </div>
     </section>
 
-    <section class="card cinematic">
-      <h2>Assinatura do Amor</h2>
-      <p>Personalize como quiser. Ja deixei preenchido com voces dois.</p>
-      <form id="nameForm" class="note-form">
-        <input id="fromName" type="text" maxlength="30" placeholder="Seu nome" required />
-        <input id="toName" type="text" maxlength="40" placeholder="Nome de quem voce ama" required />
-        <input id="relationshipDate" type="date" />
-        <button type="submit">Salvar assinatura</button>
-      </form>
-      <p id="nameFeedback" class="feedback"></p>
-    </section>
-
     <section class="card turntable-card retro-card cinematic">
       <span class="card-chip">♥ RETRO LOVE</span>
       <h2>Vitrola do Amor</h2>
-      <p>Ouca lindas cancoes. Curta o sintetizador retro.</p>
+      <p>Ouça lindas canções. Curta o sintetizador retro.</p>
       <div class="retro-switch" aria-hidden="true">
         <button class="retro-switch-btn active" type="button" id="loadMediaBtn">Sintetizador Retro</button>
         <button class="retro-switch-btn" type="button" id="playlistBtn">Playlist Spotify</button>
@@ -161,7 +177,7 @@
     <section class="card jackpot-card cinematic">
       <span class="card-chip">✣ JACKPOT</span>
       <h2>Maquininha de Surpresas</h2>
-      <p>Puxe a alavanca do Amor para girar os rolos.</p>
+      <p>Puxe a alavanca para girar</p>
       <div class="ticket-machine">
         <div class="machine-crown">
           <span>LOVE STRUCK</span>
@@ -169,9 +185,9 @@
         </div>
         <div class="machine-glass">
           <div class="slot-reels" id="slotReels">
-            <span class="reel">🌷</span>
-            <span class="reel">🎀</span>
-            <span class="reel">❤️</span>
+            <span class="reel" data-symbol="tulip">tulip</span>
+            <span class="reel" data-symbol="bow">bow</span>
+            <span class="reel" data-symbol="heart">heart</span>
           </div>
         </div>
         <div class="machine-knob-rail"></div>
@@ -186,7 +202,7 @@
 
     <section class="card cinematic">
       <h2>Jogo da Velha do Amor</h2>
-      <p>Voce (X) contra o Cupido (O).</p>
+      <p>Você (X) contra o Cupido (O).</p>
       <div id="board" class="board" aria-label="Jogo da velha"></div>
       <div class="row game-row">
         <p id="gameStatus" class="feedback">Sua vez: X</p>
@@ -203,11 +219,16 @@
         <a href="historia.html">Abrir Nossa Historia</a>
       </div>
     </section>
+
+    <section class="card cinematic love-rain-card">
+      <h2>O Botao do Amor</h2>
+      <p>Cada clique chama uma chuva de coracoes para celebrar voces.</p>
+      <button id="loveRainBtn" class="love-rain-btn" type="button">DISPARAR CHUVA DE AMOR</button>
+      <p id="loveRainCount" class="feedback">Cliques de amor: 0</p>
+    </section>
   </main>
 
-  <footer class="footer">
-    <p>Com carinho para Gabriel.</p>
-  </footer>
+  <div id="loveRainLayer" class="love-rain-layer" aria-hidden="true"></div>
 
   <script src="script.js"></script>
 </body>

@@ -1,11 +1,12 @@
 ﻿const STORAGE_KEYS = {
   profile: "loveGiftProfile",
   soundtrack: "loveGiftSoundtrack",
-  polaroids: "loveGiftPolaroids"
+  polaroids: "loveGiftPolaroids",
+  loveClicks: "loveGiftLoveClicks"
 };
 
 const defaultProfile = {
-  fromName: "Yasmin",
+  fromName: "Yasmim",
   toName: "Gabriel",
   sinceDate: "2024-05-30"
 };
@@ -26,7 +27,7 @@ const capsuleTemplates = [
   "Vale repetir nossa musica favorita."
 ];
 
-const SLOT_SYMBOLS = ["🌷", "🎀", "❤️"];
+const SLOT_SYMBOLS = ["tulip", "bow", "heart"];
 
 const heroTitleEl = document.getElementById("heroTitle");
 const heroSubtitleEl = document.getElementById("heroSubtitle");
@@ -75,6 +76,14 @@ const polaroidImages = [
   document.getElementById("polaroidImg3")
 ];
 
+const timeDaysEl = document.getElementById("timeDays");
+const timeHoursEl = document.getElementById("timeHours");
+const timeMinutesEl = document.getElementById("timeMinutes");
+
+const loveRainBtn = document.getElementById("loveRainBtn");
+const loveRainLayer = document.getElementById("loveRainLayer");
+const loveRainCountEl = document.getElementById("loveRainCount");
+
 const machineKnob = document.getElementById("machineKnob");
 const spinMachineBtn = document.getElementById("spinMachineBtn");
 const capsule = document.getElementById("capsule");
@@ -92,6 +101,7 @@ let currentPlayer = "X";
 let gameFinished = false;
 let currentBackgroundObjectUrl = "";
 let isLetterOpen = false;
+let loveClicks = Number(localStorage.getItem(STORAGE_KEYS.loveClicks) || 0);
 
 const defaultPolaroids = [
   "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'><rect width='600' height='600' fill='%23f3d8d8'/><path d='M120 340 C170 220 260 200 300 290 C350 200 440 220 480 340 C450 420 360 500 300 540 C240 500 150 420 120 340Z' fill='%23b33939'/></svg>",
@@ -159,6 +169,66 @@ function renderPolaroids() {
   });
 }
 
+function updateLoveCounter() {
+  if (!timeDaysEl || !timeHoursEl || !timeMinutesEl) {
+    return;
+  }
+
+  const sinceValue = currentProfile.sinceDate || defaultProfile.sinceDate;
+  const startDate = new Date(`${sinceValue}T00:00:00`);
+  if (Number.isNaN(startDate.getTime())) {
+    timeDaysEl.textContent = "0";
+    timeHoursEl.textContent = "0";
+    timeMinutesEl.textContent = "0";
+    return;
+  }
+
+  const diffMs = Math.max(0, Date.now() - startDate.getTime());
+  const totalMinutes = Math.floor(diffMs / 60000);
+  const days = Math.floor(totalMinutes / (24 * 60));
+  const hours = Math.floor((totalMinutes % (24 * 60)) / 60);
+  const minutes = totalMinutes % 60;
+
+  timeDaysEl.textContent = String(days);
+  timeHoursEl.textContent = String(hours).padStart(2, "0");
+  timeMinutesEl.textContent = String(minutes).padStart(2, "0");
+}
+
+function updateLoveClickCounter() {
+  if (loveRainCountEl) {
+    loveRainCountEl.textContent = `Cliques de amor: ${loveClicks}`;
+  }
+}
+
+function createRainHeart() {
+  if (!loveRainLayer) {
+    return;
+  }
+  const heart = document.createElement("span");
+  heart.className = "rain-heart";
+  heart.style.left = `${Math.random() * 100}%`;
+  heart.style.setProperty("--drift", `${(Math.random() * 120 - 60).toFixed(0)}px`);
+  heart.style.setProperty("--duration", `${(Math.random() * 1.6 + 2.6).toFixed(2)}s`);
+  heart.style.setProperty("--delay", `${(Math.random() * 0.35).toFixed(2)}s`);
+  heart.style.width = `${Math.floor(Math.random() * 10 + 12)}px`;
+  heart.style.height = heart.style.width;
+
+  loveRainLayer.appendChild(heart);
+  setTimeout(() => {
+    heart.remove();
+  }, 4600);
+}
+
+function triggerLoveRain() {
+  loveClicks += 1;
+  localStorage.setItem(STORAGE_KEYS.loveClicks, String(loveClicks));
+  updateLoveClickCounter();
+
+  for (let i = 0; i < 34; i += 1) {
+    setTimeout(createRainHeart, i * 28);
+  }
+}
+
 function handlePolaroidChange(index, fileList) {
   const file = fileList?.[0];
   if (!file) {
@@ -183,9 +253,16 @@ function personalize(template) {
 
 function applyProfileOnHero() {
   const since = formatDateBR(currentProfile.sinceDate);
-  heroTitleEl.textContent = `${currentProfile.fromName} + ${currentProfile.toName}`;
-  heroSubtitleEl.textContent = "Um espacinho amoroso para guardar musica, bilhetes e momentos especiais.";
-  coupleHeadlineEl.textContent = since ? `Juntos desde ${since}.` : "Nosso amor em cada detalhe.";
+  if (heroTitleEl) {
+    heroTitleEl.textContent = `${currentProfile.fromName} + ${currentProfile.toName}`;
+  }
+  if (heroSubtitleEl) {
+    heroSubtitleEl.textContent = "Um espacinho amoroso para guardar musica, bilhetes e momentos especiais.";
+  }
+  if (coupleHeadlineEl) {
+    coupleHeadlineEl.textContent = since ? `Juntos desde ${since}.` : "Nosso amor em cada detalhe.";
+  }
+  updateLoveCounter();
 }
 
 function restoreProfile() {
@@ -197,14 +274,23 @@ function restoreProfile() {
       sinceDate: saved.sinceDate || defaultProfile.sinceDate
     };
   }
-  fromNameInput.value = currentProfile.fromName;
-  toNameInput.value = currentProfile.toName;
-  relationshipDateInput.value = currentProfile.sinceDate;
+  if (fromNameInput) {
+    fromNameInput.value = currentProfile.fromName;
+  }
+  if (toNameInput) {
+    toNameInput.value = currentProfile.toName;
+  }
+  if (relationshipDateInput) {
+    relationshipDateInput.value = currentProfile.sinceDate;
+  }
   applyProfileOnHero();
 }
 
 function saveProfile(event) {
   event.preventDefault();
+  if (!fromNameInput || !toNameInput || !relationshipDateInput) {
+    return;
+  }
   const fromName = sanitizeText(fromNameInput.value);
   const toName = sanitizeText(toNameInput.value);
   const sinceDate = relationshipDateInput.value;
@@ -399,7 +485,9 @@ function spinMachine() {
 
   const spinInterval = setInterval(() => {
     reelEls.forEach(reel => {
-      reel.textContent = randomItem(SLOT_SYMBOLS);
+      const symbol = randomItem(SLOT_SYMBOLS);
+      reel.dataset.symbol = symbol;
+      reel.textContent = symbol;
     });
   }, 110);
 
@@ -517,26 +605,27 @@ function setupCinematicReveal() {
   cards.forEach(card => observer.observe(card));
 }
 
-nameForm.addEventListener("submit", saveProfile);
-loadMediaBtn.addEventListener("click", loadMedia);
+nameForm?.addEventListener("submit", saveProfile);
+loadMediaBtn?.addEventListener("click", loadMedia);
 playlistBtn?.addEventListener("click", () => {
   mediaTypeSelect.value = "spotify";
   mediaUrlInput.value = "https://open.spotify.com/playlist/37i9dQZF1DX50QitC6Oqtn";
   loadMedia();
 });
-playVinylBtn.addEventListener("click", toggleVinylAnimation);
-applyBgMusicBtn.addEventListener("click", applyBackgroundMusic);
-startBgMusicBtn.addEventListener("click", startBackgroundMusic);
-stopBgMusicBtn.addEventListener("click", stopBackgroundMusic);
-bgVolumeInput.addEventListener("input", setBackgroundVolume);
-newLetterBtn.addEventListener("click", revealMailLetter);
-toggleLetterBtn.addEventListener("click", toggleLetter);
-spinMachineBtn.addEventListener("click", spinMachine);
-machineKnob.addEventListener("click", spinMachine);
-resetGameBtn.addEventListener("click", resetGame);
+playVinylBtn?.addEventListener("click", toggleVinylAnimation);
+applyBgMusicBtn?.addEventListener("click", applyBackgroundMusic);
+startBgMusicBtn?.addEventListener("click", startBackgroundMusic);
+stopBgMusicBtn?.addEventListener("click", stopBackgroundMusic);
+bgVolumeInput?.addEventListener("input", setBackgroundVolume);
+newLetterBtn?.addEventListener("click", revealMailLetter);
+toggleLetterBtn?.addEventListener("click", toggleLetter);
+spinMachineBtn?.addEventListener("click", spinMachine);
+machineKnob?.addEventListener("click", spinMachine);
+resetGameBtn?.addEventListener("click", resetGame);
+loveRainBtn?.addEventListener("click", triggerLoveRain);
 
 polaroidInputs.forEach((input, index) => {
-  input.addEventListener("change", event => {
+  input?.addEventListener("change", event => {
     handlePolaroidChange(index, event.target.files);
     input.value = "";
   });
@@ -547,3 +636,7 @@ restoreSoundtrack();
 renderPolaroids();
 resetGame();
 setupCinematicReveal();
+updateLoveCounter();
+updateLoveClickCounter();
+
+setInterval(updateLoveCounter, 60000);
