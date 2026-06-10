@@ -6,12 +6,10 @@ const albumGrid = document.getElementById("albumGrid");
 const albumFeedback = document.getElementById("albumFeedback");
 const isFixedMode = true;
 
-// Troque a lista abaixo pelas fotos do album na pasta images.
-// Voce pode adicionar/remover linhas, mantendo o formato "images/nome-do-arquivo.ext".
+// Sua lista de imagens original mantida intacta
 const FIXED_ALBUM_IMAGES = [
+  "images/02.png",
   "images/04.png",
-  "images/05.png",
-  "images/06.png",
   "images/07.png",
   "images/08.png",
   "images/09.png",
@@ -20,7 +18,33 @@ const FIXED_ALBUM_IMAGES = [
   "images/12.png",
   "images/13.png",
   "images/14.png",
-  "images/15.png"
+  "images/15.png",
+  "images/16.png",
+  "images/17.png",
+  "images/18.png",
+  "images/19.png"
+];
+
+// =========================================================================
+// MUDE MANUALMENTE AQUI: Altere os textos e as datas de uma por uma!
+// Cada linha altera a foto correspondente na lista de cima.
+// =========================================================================
+const CUSTOM_CAPTIONS = [
+  { title: "Nosso primeiro date \"oficial\" ", date: "25/04/2024" }, // Altera a foto 02.png
+  { title: "Nossa primeira viagem juntos (Goiânia-GO)", date: "27/07/2024" }, // Altera a foto 04.png
+  { title: " ", date: "05/04/2026" }, // Altera a foto 07.png
+  { title: "Ida ao Route 64 e show de \"Os Paralamas do Sucesso\"",         date: "02/05/2026" }, // Altera a foto 08.png
+  { title: "Passeio com a Gamora, na casa da sua mãe",        date: "07/06/2026" }, // Altera a foto 09.png
+  { title: "Ida ao The Haus, quando conheci os seus amigos e saímos pela primeira vez oficialmente como um casal",  date: "31/05/2024" }, // Altera a foto 10.png
+  { title: " ",   date: "31/05/2024" }, // Altera a foto 11.png
+  { title: "Primeiro presente que te dei, de dia dos namorados",        date: "20/06/2025" }, // Altera a foto 12.png
+  { title: " ", date: "20/06/2025" }, // Altera a foto 13.png
+  { title: "Fomos ao \"Macarrão da Hora\"",           date: "23/06/2024" }, // Altera a foto 14.png
+  { title: "Pedido de namoro",        date: "30/05/2024" }  // Altera a foto 15.png
+    { title: "Pedido de namoro",        date: "30/05/2024" }  // Altera a foto 16.png
+  { title: "Pedido de namoro",        date: "30/05/2024" }  // Altera a foto 17.png
+  { title: "Pedido de namoro",        date: "30/05/2024" }  // Altera a foto 18.png
+  { title: "Pedido de namoro",        date: "30/05/2024" }  // Altera a foto 19.png
 ];
 
 const appConfig = window.APP_CONFIG || {};
@@ -31,13 +55,18 @@ const isOnlineMode = Boolean(supabaseUrl && supabaseAnonKey);
 
 let currentPhotos = [];
 
+// Injeta dinamicamente as legendas customizadas sem alterar a estrutura do seu HTML original
 function getFixedPhotos() {
-  return FIXED_ALBUM_IMAGES.map((src, index) => ({
-    id: `fixed-${index + 1}`,
-    src,
-    addedAt: "",
-    filePath: ""
-  }));
+  return FIXED_ALBUM_IMAGES.map((src, index) => {
+    const caption = CUSTOM_CAPTIONS[index] || { title: `Memoria ${index + 1}`, date: "Sem data" };
+    return {
+      id: `fixed-${index + 1}`,
+      src,
+      title: caption.title, 
+      addedAt: caption.date,
+      filePath: ""
+    };
+  });
 }
 
 function setFeedback(text, type = "default") {
@@ -202,7 +231,7 @@ function renderAlbum(photos) {
 
     const img = document.createElement("img");
     img.src = photo.src;
-    img.alt = `Memoria ${index + 1}`;
+    img.alt = photo.title || `Memoria ${index + 1}`;
     front.appendChild(img);
 
     const back = document.createElement("div");
@@ -210,11 +239,13 @@ function renderAlbum(photos) {
 
     const title = document.createElement("p");
     title.className = "album-back-title";
-    title.textContent = `Memoria ${index + 1}`;
+    // Garante que se o 'title' manual estiver vazio, ele use o número da memória
+    title.textContent = (photo.title && photo.title.trim() !== "") ? photo.title : `Memória ${index + 1}`;
 
     const date = document.createElement("p");
     date.className = "album-back-date";
-    date.textContent = photo.addedAt || "Sem data";
+    // Garante que se a 'date' manual estiver vazia, ele mostre "Sem data"
+    date.textContent = (photo.addedAt && photo.addedAt.trim() !== "") ? photo.addedAt : "Sem data";
 
     back.appendChild(title);
     back.appendChild(date);

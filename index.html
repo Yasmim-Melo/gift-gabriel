@@ -6,7 +6,7 @@
   <title>Nosso Cantinho</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Nunito:wght@400;600;700&family=Parisienne&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Nunito:wght@300;400;600;700;800&family=Parisienne&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -31,13 +31,16 @@
 
   <section class="hero friendly">
     <p class="hero-kicker">Presente de Dia dos Namorados</p>
+    <div class="hero-ornament" aria-hidden="true"><span>✦</span></div>
     <p class="hero-script">feito com carinho, para você</p>
     <h1 id="heroTitle">Yasmim + Gabriel</h1>
     <p id="heroSubtitle" class="hero-sub">Um espacinho amoroso para guardar música, bilhetes e momentos especiais.</p>
     <p id="coupleHeadline" class="hero-couple">Juntos desde 30/05/2024.</p>
     <p class="hero-note">Cada parte desse cantinho foi pensada para parecer uma lembrança guardada na gaveta mais bonita do coração.</p>
-    <a href="#painel" class="cta">Explorar nosso cantinho</a>
+    <a href="#painel" class="cta hero-cta">Explorar nosso cantinho <span aria-hidden="true">↓</span></a>
   </section>
+
+  <div class="section-label" aria-hidden="true">— nosso cantinho —</div>
 
   <main id="painel" class="layout">
     <section class="card cinematic counter-card">
@@ -108,8 +111,7 @@
       <a class="cta spotify-open" href="https://open.spotify.com/playlist/3Crc3YKTFBYWawEub8pKNv?si=OJtXKHtkQZ6KiQBvm1skCw" target="_blank" rel="noopener noreferrer">Abrir no Spotify</a>
     </section>
 
-    <section class="card cinematic">
-      <h2>Caixa de Correio</h2>
+    <section class="card cinematic mailbox-card">
       <p>Receba um bilhete e abra ou feche quando quiser.</p>
       <div class="mailbox-wrap">
         <svg class="mailbox-svg" viewBox="0 0 160 200" aria-hidden="true">
@@ -161,7 +163,7 @@
       <p id="capsuleMessage" class="feedback"></p>
     </section>
 
-    <section class="card cinematic">
+    <section class="card cinematic game-card">
       <h2>Jogo da Velha do Amor</h2>
       <p>Você (X) contra o Cupido (O).</p>
       <div id="board" class="board" aria-label="Jogo da velha"></div>
@@ -174,9 +176,9 @@
     <section class="card cinematic links-card">
       <h2>Paginas Especiais</h2>
       <div class="quick-links">
-        <a href="album.html">Abrir Album</a>
-        <a href="recados.html">Abrir Recados</a>
-        <a href="historia.html">Abrir Nossa Historia</a>
+        <a href="album.html"><span class="ql-icon">📷</span>Álbum de Fotos</a>
+        <a href="recados.html"><span class="ql-icon">💌</span>Recados</a>
+        <a href="historia.html"><span class="ql-icon">📖</span>Nossa História</a>
       </div>
     </section>
 

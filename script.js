@@ -12,19 +12,35 @@ const defaultProfile = {
 };
 
 const romanticTemplates = [
-  "{toName}, cada pedacinho meu sorri quando voce chega.",
-  "Eu escolheria voce de novo e de novo, todos os dias.",
-  "Com voce, ate o silencio vira carinho.",
-  "{fromName} ama cada detalhe do seu jeitinho, {toName}.",
-  "Nosso amor e meu lugar favorito."
+  "Eu escolheria você de novo e de novo, todos os dias.",
+  "O nosso amor é o meu lugar favorito.",
+  "Por você eu passaria todos os levels do mundo!",
+  "O lado bom da vida é o lado que tem você comigo!",
+  "Que sorte a do meu sorriso, ter você como motivo!",
+  "Você é o meu par favorito em todas as combinações da vida!",
+  "No jogo do amor, já ganhei só por ter você!",
+  "O meu som preferido sempre será a sua voz!"
 ];
 
 const capsuleTemplates = [
-  "Vale um abraco demorado.",
-  "Vale escolher nosso proximo date.",
-  "Vale uma declaracao olhando nos olhos.",
-  "Vale um beijo surpresa agora.",
-  "Vale repetir nossa musica favorita."
+  "Vale chameguinhos ilimitados",
+  "Vale cafuné",
+  "Vale lanche favorito",
+  "Vale doce favorito",
+  "Vale foto do casal",
+  "Vale presente",
+  "Vale passeio",
+  "Vale jantar fora",
+  "Vale um desejo",
+  "Vale um jantar preparado por mim",
+  "Vale um dia inteiro sem reclamar de nada",
+  "Vale uma noite de jogos juntos",
+  "Vale night com os amigos",
+  "Vale uma ida ao cinema",
+  "Vale o que você quiser",
+  "Vale um \"sim\" como resposta",
+  "Vale café da manhã na cama",
+  "Vale muitos beijinhos"
 ];
 
 const SLOT_SYMBOLS = ["tulip", "bow", "heart"];
