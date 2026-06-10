@@ -1017,7 +1017,7 @@ select:focus {
   height: 16px;
   top: -15px;
   left: -8px;
-  background: #8b0121s;
+  background: #8b0121;
   clip-path: polygon(0 0, 100% 12%, 100% 90%, 0 100%, 25% 50%);
 }
 
