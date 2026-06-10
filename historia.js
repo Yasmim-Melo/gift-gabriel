@@ -66,12 +66,12 @@ function ensureInitialTimeline() {
     {
       date: "2024-05-30",
       title: "Início do namoro",
-      text: "Esse foi o dia em que você me pediu em namoro."
+      text: "Esse foi o dia em que você me pediu em namoro, esse foi um momento incrível para mim, espero que comemoremos muitos aniversários de namoro juntos."
     },
     {
       date: "2024-08-10",
       title: "Nossa viagem para a Pousada das Araras",
-      text: "Foi uma viagem incrível, foi ótimo passar um tempo juntos, e com os nossos amigos, em um lugar tão bonito e aconchegante, espero fazer mais viagens desse tipo e aproveitar cada momento ao seu lado."
+      text: "Foi uma viagem incrível, foi ótimo passar um tempo juntos com os nossos amigos, em um lugar tão bonito e aconchegante, espero fazer mais viagens desse tipo e aproveitar cada momento ao seu lado."
     }
   ];
 
@@ -225,7 +225,7 @@ function renderGoals() {
     });
 
     const checkText = document.createElement("span");
-    checkText.textContent = checkbox.checked ? "Concluida" : "Em andamento";
+    checkText.textContent = checkbox.checked ? "Concluída" : "Em andamento";
 
     const removeBtn = document.createElement("button");
     removeBtn.type = "button";

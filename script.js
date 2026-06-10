@@ -242,7 +242,7 @@ function applyProfileOnHero() {
     heroTitleEl.textContent = `${currentProfile.fromName} + ${currentProfile.toName}`;
   }
   if (heroSubtitleEl) {
-    heroSubtitleEl.textContent = "Um espacinho amoroso para guardar musica, bilhetes e momentos especiais.";
+    heroSubtitleEl.textContent = "Um lugar para armazenar as nossas melhores lembranças e momentos, através de fotos, bilhetes, etc.";
   }
   if (coupleHeadlineEl) {
     coupleHeadlineEl.textContent = since ? `Juntos desde ${since}.` : "Nosso amor em cada detalhe.";
@@ -541,7 +541,7 @@ function playMove(index) {
   const winner = checkWinner(board);
   if (winner) {
     gameFinished = true;
-    setFeedback(gameStatusEl, "Voce venceu!", "success");
+    setFeedback(gameStatusEl, "Você venceu!", "success");
     return;
   }
   if (!board.includes("")) {
