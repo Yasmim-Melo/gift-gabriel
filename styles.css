@@ -908,12 +908,19 @@ select:focus {
   border: 1px solid rgba(255, 240, 235, 0.08);
   border-radius: 12px;
   overflow: hidden;
+  
+  /* ALTERAÇÃO AQUI: Remove alturas fixas e força o card a abraçar o player */
+  height: auto !important;
+  min-height: 0 !important; 
 }
 
 .embed-shell iframe {
   width: 100%;
-  min-height: 270px;
+  /* Reduz a altura do iframe para encaixar certinho no player compacto do Spotify */
+  height: 155px !important; 
+  min-height: 155px !important;
   border: 0;
+  display: block; /* Remove pequenos espaços fantasmas que navegadores colocam sob iframes */
 }
 
 .spotify-open {

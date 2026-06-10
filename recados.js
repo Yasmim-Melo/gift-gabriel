@@ -35,7 +35,7 @@ function saveNotes(notes) {
 
 function setFeedback(text, type = "default") {
   noteFeedback.textContent = text;
-  noteFeedback.style.color = type === "error" ? "#ff9c9c" : type === "success" ? "#8fe8b3" : "#e6d8d6";
+  noteFeedback.style.color = type === "error" ? "#ff9c9c" : type === "success" ? "#e2f6ea" : "#e6d8d6";
 }
 
 function renderNotes() {
