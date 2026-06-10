@@ -56,27 +56,27 @@ function ensureInitialTimeline() {
     {
       date: "2024-05-01",
       title: "O dia que nos conhecemos",
-      text: `Foi aqui que tudo comecou. Um encontro que mudou meu mundo com ${partnerName}.`
+      text: `Foi aqui que tudo começou. Obrigado por estar ao meu lado, ${partnerName}.`
     },
     {
       date: "2024-05-10",
       title: "Primeiro beijo",
-      text: `Nosso primeiro beijo. Um momento lindo com ${partnerName}.`
+      text: `Nosso primeiro beijo.`
     },
     {
       date: "2024-05-25",
       title: "Primeiro date",
-      text: "Nosso primeiro date oficial e o inicio de muitas memorias boas."
+      text: "Nosso primeiro date oficial"
     },
     {
       date: "2024-05-30",
-      title: "Inicio do namoro",
-      text: "Comecamos nosso namoro e desde entao seguimos construindo nossa historia."
+      title: "Início do namoro",
+      text: "Começamos nosso namoro e desde então seguimos construindo nossa história."
     },
     {
       date: "2024-08-10",
       title: "Nossa viagem especial",
-      text: "Um passeio inesquecivel, cheio de fotos, risadas e planos para o futuro."
+      text: "Um passeio inesquecível, cheio de fotos, risadas e planos para o futuro."
     }
   ];
 
@@ -100,7 +100,7 @@ function ensureInitialGoals() {
 
   const initialGoals = [
     {
-      title: "Viagem romantica",
+      title: "Viagem romântica",
       text: "Planejar uma viagem especial para comemorar nosso amor.",
       done: false
     },
@@ -111,7 +111,7 @@ function ensureInitialGoals() {
     },
     {
       title: "Carta anual",
-      text: "Escrever uma carta um para o outro todo ano no aniversario de namoro.",
+      text: "Escrever uma carta um para o outro todo ano no aniversário de namoro.",
       done: false
     }
   ];

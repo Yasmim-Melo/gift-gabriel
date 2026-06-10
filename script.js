@@ -41,14 +41,11 @@ const nameFeedback = document.getElementById("nameFeedback");
 
 const vinylEl = document.getElementById("vinyl");
 const tonearmEl = document.getElementById("tonearm");
-const playVinylBtn = document.getElementById("playVinylBtn");
-const loadMediaBtn = document.getElementById("loadMediaBtn");
-const mediaUrlInput = document.getElementById("mediaUrl");
-const mediaTypeSelect = document.getElementById("mediaType");
-const playlistBtn = document.getElementById("playlistBtn");
 const mediaFrame = document.getElementById("mediaFrame");
 const embedShell = document.getElementById("embedShell");
 const playerFeedback = document.getElementById("playerFeedback");
+
+const FIXED_SPOTIFY_PLAYLIST = "https://open.spotify.com/playlist/3Crc3YKTFBYWawEub8pKNv?si=OJtXKHtkQZ6KiQBvm1skCw";
 
 const bgMusicUrlInput = document.getElementById("bgMusicUrl");
 const bgMusicFileInput = document.getElementById("bgMusicFile");
@@ -63,12 +60,6 @@ const mailLetter = document.getElementById("mailLetter");
 const newLetterBtn = document.getElementById("newLetterBtn");
 const toggleLetterBtn = document.getElementById("toggleLetterBtn");
 const mailboxFlag = document.getElementById("mailboxFlag");
-
-const polaroidInputs = [
-  document.getElementById("polaroidInput1"),
-  document.getElementById("polaroidInput2"),
-  document.getElementById("polaroidInput3")
-];
 
 const polaroidImages = [
   document.getElementById("polaroidImg1"),
@@ -103,10 +94,12 @@ let currentBackgroundObjectUrl = "";
 let isLetterOpen = false;
 let loveClicks = Number(localStorage.getItem(STORAGE_KEYS.loveClicks) || 0);
 
+// Troque os 3 caminhos abaixo pelas suas fotos da pasta images.
+// Exemplo: "images/polaroid-1.jpg"
 const defaultPolaroids = [
-  "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'><rect width='600' height='600' fill='%23f3d8d8'/><path d='M120 340 C170 220 260 200 300 290 C350 200 440 220 480 340 C450 420 360 500 300 540 C240 500 150 420 120 340Z' fill='%23b33939'/></svg>",
-  "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'><rect width='600' height='600' fill='%23e8d8d3'/><circle cx='220' cy='250' r='90' fill='%234a0404'/><circle cx='380' cy='250' r='90' fill='%234a0404'/><path d='M140 310 C170 430 270 490 300 540 C330 490 430 430 460 310 Z' fill='%234a0404'/></svg>",
-  "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'><rect width='600' height='600' fill='%23f2e5e2'/><rect x='120' y='150' width='360' height='300' rx='20' fill='%23ffffff'/><path d='M120 370 L220 290 L300 350 L380 250 L480 360 L480 450 L120 450 Z' fill='%23c76c6c'/><circle cx='390' cy='230' r='35' fill='%234a0404'/></svg>"
+  "images/02.png",
+  "images/04.png",
+  "images/16.png"
 ];
 
 const backgroundAudio = new Audio();
@@ -147,18 +140,10 @@ function setFeedback(element, text, type = "default") {
 }
 
 function readStoredPolaroids() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEYS.polaroids);
-    const parsed = raw ? JSON.parse(raw) : null;
-    return Array.isArray(parsed) ? parsed : [...defaultPolaroids];
-  } catch {
-    return [...defaultPolaroids];
-  }
+  return [...defaultPolaroids];
 }
 
-function savePolaroids(images) {
-  localStorage.setItem(STORAGE_KEYS.polaroids, JSON.stringify(images));
-}
+function savePolaroids() {}
 
 function renderPolaroids() {
   const images = readStoredPolaroids();
@@ -227,22 +212,6 @@ function triggerLoveRain() {
   for (let i = 0; i < 34; i += 1) {
     setTimeout(createRainHeart, i * 28);
   }
-}
-
-function handlePolaroidChange(index, fileList) {
-  const file = fileList?.[0];
-  if (!file) {
-    return;
-  }
-
-  const reader = new FileReader();
-  reader.onload = () => {
-    const images = readStoredPolaroids();
-    images[index] = reader.result;
-    savePolaroids(images);
-    renderPolaroids();
-  };
-  reader.readAsDataURL(file);
 }
 
 function personalize(template) {
@@ -315,6 +284,22 @@ function extractSpotifyEmbed(url) {
   return `https://open.spotify.com/embed/${match[1]}/${match[2]}?utm_source=generator`;
 }
 
+function loadSpotifyPlaylistPlayer() {
+  if (!mediaFrame || !embedShell) {
+    return;
+  }
+
+  const embedUrl = extractSpotifyEmbed(FIXED_SPOTIFY_PLAYLIST);
+  if (!embedUrl) {
+    setFeedback(playerFeedback, "Nao foi possivel carregar sua playlist fixa.", "error");
+    return;
+  }
+
+  mediaFrame.src = embedUrl;
+  embedShell.hidden = false;
+  setFeedback(playerFeedback, "Player da playlist carregado. Use os controles do Spotify.", "success");
+}
+
 function extractYouTubeEmbed(url) {
   try {
     const parsed = new URL(url);
@@ -334,52 +319,10 @@ function extractYouTubeEmbed(url) {
   }
 }
 
-function detectAndBuildEmbed(url, preference) {
-  const clean = sanitizeText(url);
-  if (!clean) {
-    return {
-      src: "https://open.spotify.com/embed/playlist/37i9dQZF1DX50QitC6Oqtn?utm_source=generator",
-      label: "Playlist retro carregada."
-    };
-  }
-
-  if (preference === "spotify") {
-    const src = extractSpotifyEmbed(clean);
-    return { src, label: src ? "Spotify carregado." : "Link do Spotify invalido." };
-  }
-  if (preference === "youtube") {
-    const src = extractYouTubeEmbed(clean);
-    return { src, label: src ? "YouTube carregado." : "Link do YouTube invalido." };
-  }
-
-  const spotify = extractSpotifyEmbed(clean);
-  if (spotify) {
-    return { src: spotify, label: "Spotify detectado." };
-  }
-  const youtube = extractYouTubeEmbed(clean);
-  if (youtube) {
-    return { src: youtube, label: "YouTube detectado." };
-  }
-  return { src: null, label: "Use um link valido do Spotify ou YouTube." };
-}
-
-function loadMedia() {
-  const { src, label } = detectAndBuildEmbed(mediaUrlInput.value, mediaTypeSelect.value);
-  if (!src) {
-    embedShell.hidden = true;
-    mediaFrame.src = "";
-    setFeedback(playerFeedback, label, "error");
-    return;
-  }
-  mediaFrame.src = src;
-  embedShell.hidden = false;
-  setFeedback(playerFeedback, `${label} Toca aqui embaixo no player.`, "success");
-}
-
 function toggleVinylAnimation() {
   isVinylPlaying = !isVinylPlaying;
-  vinylEl.classList.toggle("spinning", isVinylPlaying);
-  tonearmEl.classList.toggle("active", isVinylPlaying);
+  vinylEl?.classList.toggle("spinning", isVinylPlaying);
+  tonearmEl?.classList.toggle("active", isVinylPlaying);
 }
 
 function cleanupBackgroundObjectUrl() {
@@ -445,6 +388,9 @@ function stopBackgroundMusic() {
 }
 
 function restoreSoundtrack() {
+  if (!bgVolumeInput || !bgMusicUrlInput) {
+    return;
+  }
   const saved = getStoredObject(STORAGE_KEYS.soundtrack, {});
   const volume = Number.isFinite(saved.volume) ? saved.volume : 0.35;
   backgroundAudio.volume = volume;
@@ -606,13 +552,6 @@ function setupCinematicReveal() {
 }
 
 nameForm?.addEventListener("submit", saveProfile);
-loadMediaBtn?.addEventListener("click", loadMedia);
-playlistBtn?.addEventListener("click", () => {
-  mediaTypeSelect.value = "spotify";
-  mediaUrlInput.value = "https://open.spotify.com/playlist/37i9dQZF1DX50QitC6Oqtn";
-  loadMedia();
-});
-playVinylBtn?.addEventListener("click", toggleVinylAnimation);
 applyBgMusicBtn?.addEventListener("click", applyBackgroundMusic);
 startBgMusicBtn?.addEventListener("click", startBackgroundMusic);
 stopBgMusicBtn?.addEventListener("click", stopBackgroundMusic);
@@ -624,15 +563,9 @@ machineKnob?.addEventListener("click", spinMachine);
 resetGameBtn?.addEventListener("click", resetGame);
 loveRainBtn?.addEventListener("click", triggerLoveRain);
 
-polaroidInputs.forEach((input, index) => {
-  input?.addEventListener("change", event => {
-    handlePolaroidChange(index, event.target.files);
-    input.value = "";
-  });
-});
-
 restoreProfile();
 restoreSoundtrack();
+loadSpotifyPlaylistPlayer();
 renderPolaroids();
 resetGame();
 setupCinematicReveal();

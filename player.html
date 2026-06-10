@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Player Continuo | Nosso Cantinho</title>
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Nunito", sans-serif;
+      color: #f8f1ef;
+      background: linear-gradient(165deg, #1b1011 0%, #2b1719 32%, #12090a 100%);
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+    }
+
+    .player-shell {
+      width: min(520px, 100%);
+      border: 1px solid rgba(255, 246, 240, 0.14);
+      border-radius: 16px;
+      padding: 0.9rem;
+      background: rgba(255, 250, 246, 0.05);
+    }
+
+    h1 {
+      margin: 0 0 0.55rem;
+      font-family: "Cinzel", serif;
+      font-size: 1.15rem;
+    }
+
+    p {
+      margin: 0 0 0.8rem;
+      color: #e7ddd5;
+      font-size: 0.92rem;
+    }
+
+    iframe {
+      width: 100%;
+      min-height: 480px;
+      border: 0;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <section class="player-shell">
+    <h1>Player Continuo</h1>
+    <p>Mantenha esta janela aberta para seguir tocando enquanto navega no site.</p>
+    <iframe
+      title="Spotify Playlist"
+      loading="lazy"
+      allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+      src="https://open.spotify.com/embed/playlist/3Crc3YKTFBYWawEub8pKNv?utm_source=generator"
+    ></iframe>
+  </section>
+</body>
+</html>

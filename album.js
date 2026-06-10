@@ -4,6 +4,24 @@ const photoInput = document.getElementById("photoInput");
 const clearAlbumBtn = document.getElementById("clearAlbumBtn");
 const albumGrid = document.getElementById("albumGrid");
 const albumFeedback = document.getElementById("albumFeedback");
+const isFixedMode = true;
+
+// Troque a lista abaixo pelas fotos do album na pasta images.
+// Voce pode adicionar/remover linhas, mantendo o formato "images/nome-do-arquivo.ext".
+const FIXED_ALBUM_IMAGES = [
+  "images/04.png",
+  "images/05.png",
+  "images/06.png",
+  "images/07.png",
+  "images/08.png",
+  "images/09.png",
+  "images/10.png",
+  "images/11.png",
+  "images/12.png",
+  "images/13.png",
+  "images/14.png",
+  "images/15.png"
+];
 
 const appConfig = window.APP_CONFIG || {};
 const supabaseUrl = String(appConfig.SUPABASE_URL || "").trim().replace(/\/$/, "");
@@ -12,6 +30,15 @@ const supabaseBucket = String(appConfig.SUPABASE_BUCKET || "love-photos").trim()
 const isOnlineMode = Boolean(supabaseUrl && supabaseAnonKey);
 
 let currentPhotos = [];
+
+function getFixedPhotos() {
+  return FIXED_ALBUM_IMAGES.map((src, index) => ({
+    id: `fixed-${index + 1}`,
+    src,
+    addedAt: "",
+    filePath: ""
+  }));
+}
 
 function setFeedback(text, type = "default") {
   albumFeedback.textContent = text;
@@ -200,6 +227,10 @@ function renderAlbum(photos) {
     removeBtn.className = "photo-remove";
     removeBtn.textContent = "x";
     removeBtn.addEventListener("click", async () => {
+      if (isFixedMode) {
+        setFeedback("Modo fixo ativo: as fotos do album vem da pasta images.");
+        return;
+      }
       try {
         if (isOnlineMode) {
           await onlineDeletePhoto(photo);
@@ -216,6 +247,10 @@ function renderAlbum(photos) {
       }
     });
 
+    if (isFixedMode) {
+      removeBtn.hidden = true;
+    }
+
     card.appendChild(flip);
     card.appendChild(removeBtn);
     albumGrid.appendChild(card);
@@ -223,6 +258,12 @@ function renderAlbum(photos) {
 }
 
 async function refreshAlbum() {
+  if (isFixedMode) {
+    currentPhotos = getFixedPhotos();
+    renderAlbum(currentPhotos);
+    return;
+  }
+
   if (isOnlineMode) {
     currentPhotos = await onlineFetchPhotos();
   } else {
@@ -232,6 +273,11 @@ async function refreshAlbum() {
 }
 
 async function addPhotos(fileList) {
+  if (isFixedMode) {
+    setFeedback("Modo fixo ativo: edite a lista em album.js para mudar as fotos.");
+    return;
+  }
+
   const files = Array.from(fileList).slice(0, 12);
   if (!files.length) {
     return;
@@ -288,12 +334,17 @@ function setupCinematicReveal() {
   cards.forEach(card => observer.observe(card));
 }
 
-photoInput.addEventListener("change", async event => {
+photoInput?.addEventListener("change", async event => {
   await addPhotos(event.target.files);
   photoInput.value = "";
 });
 
-clearAlbumBtn.addEventListener("click", async () => {
+clearAlbumBtn?.addEventListener("click", async () => {
+  if (isFixedMode) {
+    setFeedback("Modo fixo ativo: nada para limpar.");
+    return;
+  }
+
   try {
     if (isOnlineMode) {
       for (const photo of currentPhotos) {
@@ -314,6 +365,18 @@ clearAlbumBtn.addEventListener("click", async () => {
 });
 
 async function bootstrap() {
+  if (isFixedMode) {
+    setFeedback("Modo fixo ativo: album carregado da pasta images.", "success");
+    await refreshAlbum();
+    if (photoInput) {
+      photoInput.disabled = true;
+    }
+    if (clearAlbumBtn) {
+      clearAlbumBtn.disabled = true;
+    }
+    return;
+  }
+
   if (isOnlineMode) {
     setFeedback("Modo online ativo: as fotos aparecem para todos.", "success");
   } else {

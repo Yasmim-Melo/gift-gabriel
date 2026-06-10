@@ -42,7 +42,7 @@
   <main id="painel" class="layout">
     <section class="card cinematic counter-card">
       <h2>O Contador do Nosso Amor</h2>
-      <p>Quanto tempo nosso coracao ja caminha juntinho.</p>
+      <p>Quanto tempo nossos corações já caminham juntinhos.</p>
       <div class="time-counter" id="timeCounter" aria-live="polite">
         <article>
           <strong id="timeDays">0</strong>
@@ -61,27 +61,20 @@
 
     <section class="card cinematic varal-card">
       <h2>Varal de Polaroids</h2>
-      <p>Escolha ate 3 fotos para ficar no nosso varal. Na home, elas so balancam de lado no hover.</p>
       <div class="polaroid-row">
         <article class="polaroid-frame">
           <div class="clip"></div>
           <img id="polaroidImg1" alt="Polaroid 1" />
-          <label class="polaroid-upload" for="polaroidInput1">Escolher foto 1</label>
-          <input id="polaroidInput1" type="file" accept="image/*" hidden />
         </article>
 
         <article class="polaroid-frame">
           <div class="clip"></div>
           <img id="polaroidImg2" alt="Polaroid 2" />
-          <label class="polaroid-upload" for="polaroidInput2">Escolher foto 2</label>
-          <input id="polaroidInput2" type="file" accept="image/*" hidden />
         </article>
 
         <article class="polaroid-frame">
           <div class="clip"></div>
           <img id="polaroidImg3" alt="Polaroid 3" />
-          <label class="polaroid-upload" for="polaroidInput3">Escolher foto 3</label>
-          <input id="polaroidInput3" type="file" accept="image/*" hidden />
         </article>
       </div>
     </section>
@@ -89,12 +82,8 @@
     <section class="card turntable-card retro-card cinematic">
       <span class="card-chip">♥ RETRO LOVE</span>
       <h2>Vitrola do Amor</h2>
-      <p>Ouça lindas canções. Curta o sintetizador retro.</p>
-      <div class="retro-switch" aria-hidden="true">
-        <button class="retro-switch-btn active" type="button" id="loadMediaBtn">Sintetizador Retro</button>
-        <button class="retro-switch-btn" type="button" id="playlistBtn">Playlist Spotify</button>
-      </div>
-      <div class="turntable">
+      <div class="turntable is-gif">
+        <img class="turntable-gif" src="images/vitrola.gif" alt="Vitrola animada" />
         <div class="turntable-lid"><span>LOVE</span></div>
         <div class="deck">
           <div class="deck-top"></div>
@@ -112,39 +101,11 @@
           <div class="handle"></div>
         </div>
       </div>
-      <button id="playVinylBtn" class="retro-play" type="button">▶ TOCAR MELODIA</button>
-      <div class="player-controls compact">
-        <input id="mediaUrl" type="url" placeholder="Cole o link aqui" />
-        <div class="row">
-          <select id="mediaType">
-            <option value="auto">Detectar automatico</option>
-            <option value="spotify">Spotify</option>
-            <option value="youtube">YouTube</option>
-          </select>
-          <button class="secondary" type="button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">Topo</button>
-        </div>
-        <p id="playerFeedback" class="feedback"></p>
-      </div>
+      <p id="playerFeedback" class="feedback"></p>
       <div class="embed-shell" id="embedShell" hidden>
         <iframe id="mediaFrame" title="Player" loading="lazy" allow="autoplay; encrypted-media; fullscreen; picture-in-picture"></iframe>
       </div>
-    </section>
-
-    <section class="card cinematic">
-      <h2>Trilha Sonora de Fundo</h2>
-      <p>Use uma musica em mp3 para tocar no site inteiro.</p>
-      <div class="note-form">
-        <input id="bgMusicUrl" type="url" placeholder="https://...arquivo.mp3" />
-        <input id="bgMusicFile" type="file" accept="audio/*" />
-        <div class="row">
-          <button id="applyBgMusicBtn" type="button">Aplicar trilha</button>
-          <button id="startBgMusicBtn" class="secondary" type="button">Iniciar</button>
-          <button id="stopBgMusicBtn" class="secondary" type="button">Parar</button>
-        </div>
-        <label for="bgVolume">Volume</label>
-        <input id="bgVolume" type="range" min="0" max="1" step="0.01" value="0.35" />
-      </div>
-      <p id="bgMusicFeedback" class="feedback"></p>
+      <a class="cta spotify-open" href="https://open.spotify.com/playlist/3Crc3YKTFBYWawEub8pKNv?si=OJtXKHtkQZ6KiQBvm1skCw" target="_blank" rel="noopener noreferrer">Abrir no Spotify</a>
     </section>
 
     <section class="card cinematic">
@@ -212,7 +173,6 @@
 
     <section class="card cinematic links-card">
       <h2>Paginas Especiais</h2>
-      <p>Organizei cada parte em paginas dedicadas.</p>
       <div class="quick-links">
         <a href="album.html">Abrir Album</a>
         <a href="recados.html">Abrir Recados</a>
@@ -221,8 +181,7 @@
     </section>
 
     <section class="card cinematic love-rain-card">
-      <h2>O Botao do Amor</h2>
-      <p>Cada clique chama uma chuva de coracoes para celebrar voces.</p>
+      <h2>O Botão do Amor</h2>
       <button id="loveRainBtn" class="love-rain-btn" type="button">DISPARAR CHUVA DE AMOR</button>
       <p id="loveRainCount" class="feedback">Cliques de amor: 0</p>
     </section>
@@ -231,5 +190,6 @@
   <div id="loveRainLayer" class="love-rain-layer" aria-hidden="true"></div>
 
   <script src="script.js"></script>
+  <script src="global-player.js"></script>
 </body>
 </html>
