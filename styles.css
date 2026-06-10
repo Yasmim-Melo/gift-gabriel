@@ -194,7 +194,7 @@ body {
 
 .hero-kicker {
   margin: 0;
-  color: var(--wine-2);
+  color: rgba(255, 247, 241, 0.85);
   text-transform: uppercase;
   letter-spacing: 0.22em;
   font-weight: 800;
@@ -213,7 +213,8 @@ body {
   font-family: "Cinzel", serif;
   font-size: clamp(2.2rem, 5.5vw, 4.2rem);
   letter-spacing: 0.03em;
-  background: linear-gradient(130deg, #ffffff 15%, #e2b0bc 80%);
+  background: none !important;
+  -webkit-text-fill-color: #ffffff !important;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -237,7 +238,7 @@ body {
   padding: 0.45rem 1.15rem;
   font-size: 0.88rem;
   font-weight: 700;
-  color: var(--wine-3);
+  color: #bd4e4e;
   letter-spacing: 0.03em;
   margin: 0.8rem 0 0.65rem;
 }
@@ -568,13 +569,13 @@ select:focus {
   justify-content: center;
   border-radius: 999px;
   background: rgba(160, 30, 53, 0.15);
-  color: var(--wine-3);
+  color: #bf5f54;
   font-weight: 700;
   font-size: 0.78rem;
   letter-spacing: 0.1em;
   padding: 0.35rem 0.9rem;
   float: right;
-  border: 1px solid rgba(191, 53, 85, 0.25);
+  border: 1px solid rgb(96, 8, 8);
   text-transform: uppercase;
 }
 
@@ -1016,7 +1017,7 @@ select:focus {
   height: 16px;
   top: -15px;
   left: -8px;
-  background: #cf2a2a;
+  background: #8b0121s;
   clip-path: polygon(0 0, 100% 12%, 100% 90%, 0 100%, 25% 50%);
 }
 
@@ -1027,7 +1028,7 @@ select:focus {
   top: 110px;
   left: 50%;
   transform: translateX(-50%) rotate(-45deg);
-  background: #d63b3b;
+  background: #670d0d;
 }
 
 .mail-heart::before,
@@ -1037,7 +1038,7 @@ select:focus {
   width: 40px;
   height: 35px;
   border-radius: 50%;
-  background: #d63b3b;
+  background: #670d0d;
 }
 
 .mail-heart::before {
@@ -1229,7 +1230,7 @@ select:focus {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  border: 2px solid #9e3941;
+  border: 2px solid #9c1b1b;
   background: radial-gradient(circle at 35% 30%, #d57b83, #9b2933 65%, #7d1822 100%);
   color: #fff9f6;
   font-weight: 900;
@@ -1292,7 +1293,7 @@ select:focus {
   border-radius: 12px;
   border: 1px solid #cec9c4;
   background: linear-gradient(180deg, #efebe7, #d6d0ca);
-  color: #a54b4b;
+  color: #9c1b1b;
   text-align: center;
   font-size: 0.44rem;
   letter-spacing: 0.08em;
@@ -1330,21 +1331,21 @@ select:focus {
   background:
     linear-gradient(to right,
       transparent 32%,
-      rgba(203, 101, 101, 0.92) 32.4%,
-      rgba(203, 101, 101, 0.92) 34.2%,
+      rgba(91, 4, 4, 0.92) 32.4%,
+      rgba(91, 4, 4, 0.92) 34.2%,
       transparent 34.7%,
       transparent 65.5%,
-      rgba(203, 101, 101, 0.92) 66%,
-      rgba(203, 101, 101, 0.92) 67.8%,
+      rgba(91, 4, 4, 0.92) 66%,
+      rgba(91, 4, 4, 0.92) 67.8%,
       transparent 68.3%),
     linear-gradient(to bottom,
       transparent 32%,
-      rgba(203, 101, 101, 0.92) 32.4%,
-      rgba(203, 101, 101, 0.92) 34.2%,
+      rgba(91, 4, 4, 0.92) 32.4%,
+      rgba(91, 4, 4, 0.92) 34.2%,
       transparent 34.7%,
       transparent 65.5%,
-      rgba(203, 101, 101, 0.92) 66%,
-      rgba(203, 101, 101, 0.92) 67.8%,
+      rgba(91, 4, 4, 0.92) 66%,
+      rgba(91, 4, 4, 0.92) 67.8%,
       transparent 68.3%);
 }
 
@@ -1367,7 +1368,7 @@ select:focus {
 }
 
 .mark-x {
-  color: #c4685c;
+  color: #b28f8b;
   font-family: "Cinzel", serif;
   font-size: 2rem;
   line-height: 1;
@@ -1429,11 +1430,11 @@ select:focus {
   content: "";
   flex: 1;
   height: 1px;
-  background: rgba(191, 53, 85, 0.3);
+  background: rgb(119, 13, 13);
 }
 
 .hero-ornament span {
-  color: var(--wine-2);
+  color: #9f2b2b;
   font-size: 0.65rem;
   line-height: 1;
   opacity: 0.8;
@@ -1525,7 +1526,7 @@ select:focus {
   position: absolute;
   top: -24px;
   transform: rotate(45deg);
-  background: radial-gradient(circle at 30% 30%, #ffe8ef, #f05a7d 74%);
+  background: #790707dd;
   animation: loveRain var(--duration, 3.3s) ease-in var(--delay, 0s) forwards;
   opacity: 0;
 }
@@ -1549,7 +1550,7 @@ select:focus {
 }
 
 .section-shell {
-  width: min(1200px, 94%); /* Expandido de 1000px para comportar melhor 4 colunas */
+  width: min(1200px, 94%);
   margin: 1.4rem auto 2.8rem;
   display: grid;
   gap: 1.1rem;
@@ -1560,7 +1561,6 @@ select:focus {
    ========================================================================= */
 .album-grid {
   display: grid !important;
-  /* Cria colunas flexíveis de no mínimo 220px. Renderiza 4 colunas em desktops */
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
   gap: 20px !important;
   padding: 15px 0 !important;
@@ -1573,9 +1573,9 @@ select:focus {
   overflow: hidden;
   background: #111;
   width: 100% !important;
-  max-width: 270px !important; /* Tamanho controlado de cada Polaroid */
+  max-width: 270px !important;
   margin: 0 auto !important;
-  height: 330px !important; /* Altura fixa refinada para evitar estiramento */
+  height: 330px !important;
   perspective: 1000px !important;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
@@ -1600,20 +1600,18 @@ select:focus {
   backface-visibility: hidden;
 }
 
-/* Formato Polaroid com bordas brancas grossas na frente do card */
 .album-front {
   background: #ffffff !important;
   border: 12px solid #ffffff !important;
-  border-bottom: 42px solid #ffffff !important; /* Espaço para simular o papel da Polaroid */
+  border-bottom: 42px solid #ffffff !important;
   box-sizing: border-box !important;
   display: block !important;
 }
 
-/* AJUSTE NA LARGURA E ALTURA DA IMAGEM: Força o corte quadrado sem deformar */
 .album-front img {
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important; /* Preenche o espaço cortando sobras sem achatar */
+  object-fit: cover !important;
   object-position: 50% 20%;
   display: block !important;
 }
@@ -1845,7 +1843,7 @@ select:focus {
     opacity: 0;
   }
   12% {
-    opacity: 0.95;
+    opacity: 1;
   }
   100% {
     transform: translateY(112vh) translateX(var(--drift, 0)) rotate(45deg) scale(1.05);
@@ -1853,6 +1851,9 @@ select:focus {
   }
 }
 
+/* =========================================================================
+   MEDIA QUERY: AJUSTES EXCLUSIVOS PARA DISPOSITIVOS MÓVEIS (CELULARES)
+   ========================================================================= */
 @media (max-width: 760px) {
   .hero {
     padding-top: 4.4rem;
@@ -1919,16 +1920,58 @@ select:focus {
     height: 22px;
   }
 
-  /* Em celulares, o grid vira 1 coluna para não esmagar as fotos */
+  /* ALTERADO: Grade dividida em 2 colunas perfeitas no celular */
   .album-grid {
-    grid-template-columns: 1fr !important;
-    justify-content: stretch !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    justify-content: center !important;
+    gap: 12px !important; /* Espaçamento menor para caber melhor na tela */
+    padding: 10px 0 !important;
   }
 
-  .photo-card,
+  /* CORRIGIDO: Reduz as dimensões físicas da Polaroid mantendo o aspecto quadrado */
+  .photo-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 3 / 4 !important; /* Mantém a proporção vertical da Polaroid */
+  }
+
+  /* Garante o comportamento fluido das faces internas no mobile */
   .album-flip {
-    max-width: 290px !important;
-    height: 350px !important;
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important;
+    transform-style: preserve-3d !important;
+  }
+
+  /* Correção de renderização para navegadores mobile (Chrome/Safari) */
+  .album-face {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important; /* Prefixo obrigatório para iOS/Safari */
+  }
+
+  /* Reduz ligeiramente a borda interna da Polaroid para telas compactas */
+  .album-front {
+    border: 6px solid #ffffff !important;
+    border-bottom: 24px solid #ffffff !important;
+    display: block !important;
+  }
+
+  .album-back {
+    border: 6px solid #ffffff !important;
+    padding: 8px !important;
+  }
+
+  .album-back-title {
+    font-size: 0.75rem !important; /* Letra menor no mobile para não quebrar linha à toa */
+    margin-bottom: 2px !important;
+  }
+
+  .album-back-date {
+    font-size: 0.65rem !important;
   }
 
   .retro-play {

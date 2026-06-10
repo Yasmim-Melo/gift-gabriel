@@ -1,4 +1,4 @@
-# Nosso Cantinho
+# Nossas Memórias
 
 Site romantico interativo feito com HTML, CSS e JavaScript puro.
 
