@@ -54,11 +54,6 @@ function ensureInitialTimeline() {
 
   const requiredMoments = [
     {
-      date: "2024-05-01",
-      title: "O dia que nos conhecemos",
-      text: `Foi aqui que tudo começou. Obrigado por estar ao meu lado, ${partnerName}.`
-    },
-    {
       date: "2024-05-10",
       title: "Primeiro beijo",
       text: `Nosso primeiro beijo.`
@@ -71,12 +66,12 @@ function ensureInitialTimeline() {
     {
       date: "2024-05-30",
       title: "Início do namoro",
-      text: "Começamos nosso namoro e desde então seguimos construindo nossa história."
+      text: "Esse foi o dia em que você me pediu em namoro."
     },
     {
       date: "2024-08-10",
-      title: "Nossa viagem especial",
-      text: "Um passeio inesquecível, cheio de fotos, risadas e planos para o futuro."
+      title: "Nossa viagem para a Pousada das Araras",
+      text: "Foi uma viagem incrível, foi ótimo passar um tempo juntos, e com os nossos amigos, em um lugar tão bonito e aconchegante, espero fazer mais viagens desse tipo e aproveitar cada momento ao seu lado."
     }
   ];
 

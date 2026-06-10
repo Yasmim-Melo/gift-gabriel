@@ -705,7 +705,10 @@ select:focus {
 
 .vinyl-center {
   position: absolute;
-  inset: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
   margin: auto;
   width: 48px;
   height: 48px;
@@ -717,7 +720,10 @@ select:focus {
 .vinyl-center::after {
   content: "";
   position: absolute;
-  inset: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
   margin: auto;
   width: 6px;
   height: 6px;
@@ -1204,7 +1210,7 @@ select:focus {
 }
 
 .reel[data-symbol="tulip"]::before {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='p' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ff76c5'/%3E%3Cstop offset='1' stop-color='%23b33f8b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M32 12c5 0 11 9 11 16 0 9-6 17-11 17S21 37 21 28c0-7 6-16 11-16Z' fill='url(%23p)'/%3E%3Cpath d='M20 20c4 0 7 3 8 7-2 5-6 8-10 8-3 0-5-3-5-6 0-5 3-9 7-9Z' fill='%23cf58a7'/%3E%3Cpath d='M44 20c4 0 7 4 7 9 0 3-2 6-5 6-4 0-8-3-10-8 1-4 4-7 8-7Z' fill='%23cf58a7'/%3E%3Cpath d='M31 43h3v13h-3z' fill='%234d8c49'/%3E%3Cpath d='M31 48c-6 0-10 2-14 7 7 1 12-1 14-5ZM34 48c6 0 10 2 14 7-7 1-12-1-14-5Z' fill='%2347a55b'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='p' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ff76c5'/%3E%3Cstop offset='1' stop-color='%23b33f8b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M32 12c5 0 11 9 11 16 0 9-6 17-11 17S21 37 21 28c0-7 6-16 11-16Z' fill='url(%23p)'/%3E%3Cpath d='M20 20c4 0 7 3 8 7-2 5-6 8-10 8-3 0-5-3-5-6 0-5 3-9 7-9Z' fill='%23cf58a7'/%3E%3Cpath d='M44 20c4 0 7 4 7 9 0 3-2 6-5 6-4 0-8-3-10-8 1-4 4-7 8-7Z' fill='%23cf58a7'/%3E%3C/svg%3E");
 }
 
 .reel[data-symbol="bow"]::before {
@@ -1409,7 +1415,6 @@ select:focus {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* ── Hero ornament ───────────────────────────────────────── */
 .hero-ornament {
   display: flex;
   align-items: center;
@@ -1434,7 +1439,6 @@ select:focus {
   opacity: 0.8;
 }
 
-/* ── Section label ───────────────────────────────────────── */
 .section-label {
   text-align: center;
   color: var(--muted);
@@ -1446,7 +1450,6 @@ select:focus {
   opacity: 0.7;
 }
 
-/* ── Hero CTA ────────────────────────────────────────────── */
 .hero-cta {
   display: inline-flex;
   align-items: center;
@@ -1467,14 +1470,12 @@ select:focus {
   transform: translateY(3px);
 }
 
-/* ── Quick-links icon ────────────────────────────────────── */
 .ql-icon {
   font-size: 1.4rem;
   line-height: 1;
   display: block;
 }
 
-/* ── Staggered card entrance ─────────────────────────────── */
 .layout > .cinematic:nth-child(1) { transition-delay: 0ms; }
 .layout > .cinematic:nth-child(2) { transition-delay: 85ms; }
 .layout > .cinematic:nth-child(3) { transition-delay: 170ms; }
@@ -1484,7 +1485,6 @@ select:focus {
 .layout > .cinematic:nth-child(7) { transition-delay: 510ms; }
 .layout > .cinematic:nth-child(8) { transition-delay: 595ms; }
 
-/* ── Counter card full-width refined ────────────────────── */
 .counter-card {
   position: relative;
 }
@@ -1493,7 +1493,6 @@ select:focus {
   font-size: 1.28rem;
 }
 
-/* ── Love rain card ──────────────────────────────────────── */
 .love-rain-card {
   grid-column: 1 / -1;
   text-align: center;
@@ -1550,34 +1549,41 @@ select:focus {
 }
 
 .section-shell {
-  width: min(1000px, 94%);
+  width: min(1200px, 94%); /* Expandido de 1000px para comportar melhor 4 colunas */
   margin: 1.4rem auto 2.8rem;
   display: grid;
   gap: 1.1rem;
 }
 
+/* =========================================================================
+   MURAL DE FOTOS POLAROID CORRIGIDO (3 a 4 colunas e proporções ideais)
+   ========================================================================= */
 .album-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(260px, 320px));
-  justify-content: flex-start;
-  gap: 1rem;
+  display: grid !important;
+  /* Cria colunas flexíveis de no mínimo 220px. Renderiza 4 colunas em desktops */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+  gap: 20px !important;
+  padding: 15px 0 !important;
+  width: 100% !important;
 }
 
 .photo-card {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.18);
   background: #111;
-  min-height: 260px;
-  perspective: 950px;
+  width: 100% !important;
+  max-width: 270px !important; /* Tamanho controlado de cada Polaroid */
+  margin: 0 auto !important;
+  height: 330px !important; /* Altura fixa refinada para evitar estiramento */
+  perspective: 1000px !important;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
 
 .album-flip {
   position: relative;
-  width: 100%;
-  min-height: 260px;
+  width: 100% !important;
+  height: 100% !important;
   transform-style: preserve-3d;
   transition: transform 0.65s cubic-bezier(0.2, 0.78, 0.2, 1);
 }
@@ -1589,18 +1595,27 @@ select:focus {
 .album-face {
   position: absolute;
   inset: 0;
+  width: 100% !important;
+  height: 100% !important;
   backface-visibility: hidden;
 }
 
+/* Formato Polaroid com bordas brancas grossas na frente do card */
 .album-front {
-  background: #111;
+  background: #ffffff !important;
+  border: 12px solid #ffffff !important;
+  border-bottom: 42px solid #ffffff !important; /* Espaço para simular o papel da Polaroid */
+  box-sizing: border-box !important;
+  display: block !important;
 }
 
+/* AJUSTE NA LARGURA E ALTURA DA IMAGEM: Força o corte quadrado sem deformar */
 .album-front img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important; /* Preenche o espaço cortando sobras sem achatar */
   object-position: 50% 20%;
+  display: block !important;
 }
 
 .album-back {
@@ -1609,30 +1624,33 @@ select:focus {
     linear-gradient(180deg, rgba(254, 248, 244, 0.95), rgba(245, 234, 227, 0.96)),
     repeating-linear-gradient(180deg, transparent, transparent 25px, rgba(118, 82, 84, 0.1) 26px, transparent 27px);
   color: #2d1618;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: 0.45rem;
-  padding: 1rem;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding: 15px !important;
+  box-sizing: border-box !important;
 }
 
 .album-back-title {
   font-family: "Cinzel", serif;
-  font-size: 1rem;
+  font-size: 0.95rem !important;
   font-weight: 700;
   color: #3d1d20;
   text-transform: uppercase;
   letter-spacing: 0.06em;
+  margin: 0 0 6px 0 !important;
 }
 
 .album-back-date {
-  font-size: 0.86rem;
+  font-family: monospace !important;
+  font-size: 0.82rem !important;
   font-weight: 700;
   color: #6d3b40;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  margin: 0 !important;
 }
 
 .album-back p {
@@ -1769,16 +1787,13 @@ select:focus {
     top: 150px;
     opacity: 0;
   }
-
   20% {
     opacity: 1;
   }
-
   70% {
     top: 282px;
     opacity: 1;
   }
-
   100% {
     top: 304px;
     opacity: 0;
@@ -1904,14 +1919,16 @@ select:focus {
     height: 22px;
   }
 
+  /* Em celulares, o grid vira 1 coluna para não esmagar as fotos */
   .album-grid {
-    grid-template-columns: 1fr;
-    justify-content: stretch;
+    grid-template-columns: 1fr !important;
+    justify-content: stretch !important;
   }
 
   .photo-card,
   .album-flip {
-    min-height: 230px;
+    max-width: 290px !important;
+    height: 350px !important;
   }
 
   .retro-play {

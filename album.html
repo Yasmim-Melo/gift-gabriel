@@ -25,16 +25,16 @@
   <section class="hero">
     <p class="hero-kicker">Nossas Fotos</p>
     <h1>Álbum de Memórias</h1>
-    <p class="hero-sub">Guarde aqui os registros mais fofos de vocês dois.</p>
+    <p class="hero-sub">Alguns de nossos registros.</p>
   </section>
 
   <main class="section-shell">
     <section class="card cinematic">
-      <h2>Adicionar Fotos</h2>
-      <p>Envie várias imagens para montar o mural do casal.</p>
-      <div class="row">
-        <input id="photoInput" type="file" accept="image/*" multiple />
-        <button id="clearAlbumBtn" class="secondary" type="button">Limpar álbum</button>
+      <h2>Filtrar Memórias</h2>
+      <p>Escolha uma data, ano, ou palavra para relembrar um momento especial.</p>
+      <div class="row" style="gap: 10px; display: flex; align-items: center;">
+        <input id="dateFilterInput" type="text" placeholder="Ex: 2024, 2026 ou 31/05" style="flex: 1;" />
+        <button id="clearFilterBtn" class="secondary" type="button" style="white-space: nowrap;">Ver Todas</button>
       </div>
       <p id="albumFeedback" class="feedback"></p>
     </section>
