@@ -95,11 +95,6 @@ function ensureInitialGoals() {
 
   const initialGoals = [
     {
-      title: "Viagem romântica",
-      text: "Planejar uma viagem especial para comemorar nosso amor.",
-      done: false
-    },
-    {
       title: "Noite de filmes",
       text: "Montar uma noite com filmes favoritos, coberta e pipoca.",
       done: false
