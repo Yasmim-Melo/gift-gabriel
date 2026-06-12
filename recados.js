@@ -9,11 +9,13 @@ const quickMessageBtn = document.getElementById("quickMessageBtn");
 const quickMessageText = document.getElementById("quickMessageText");
 
 const quickMessages = [
-  "Gabriel, te amar e a melhor parte do meu dia.",
-  "Voce e meu abraco favorito.",
-  "Obrigada por deixar meus dias tao leves.",
-  "Com voce eu sinto paz e borboletas ao mesmo tempo.",
-  "Te amo hoje, amanha e em todos os dias."
+  "Você ilumina meus dias",
+  "Amar você é a melhor parte da minha vida.",
+  "Obrigada por deixar meus dias tão leves.",
+  "Eu escolho você todos os dias.",
+  "No teu abraço, encontrei meu lar.",
+  "Você é meu porto seguro.",
+  "Cada momento com você é um presente.",
 ];
 
 function sanitizeText(text) {

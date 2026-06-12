@@ -563,6 +563,20 @@ select:focus {
   margin-top: 0.4rem;
 }
 
+.jackpot-card {
+  position: relative;
+  overflow: visible !important; /* CRÍTICO: Impede que o card corte a manivela */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ticket-machine {
+  position: relative;
+  overflow: visible !important; /* CRÍTICO: Impede que a máquina corte a manivela */
+  margin-right: 40px; /* Cria um recuo na direita para a manivela não sair da tela em celulares */
+}
+
 .card-chip {
   display: inline-flex;
   align-items: center;
@@ -1238,44 +1252,62 @@ select:focus {
   height: 42px;
   border-radius: 50%;
   border: 2px solid #9c1b1b;
-  background: radial-gradient(circle at 35% 30%, #d57b83, #9b2933 65%, #7d1822 100%);
-  color: #fff9f6;
-  font-weight: 900;
-  font-size: 1.2rem;
+  
+  /* Gradiente limpo e sem manchas brancas artificiais */
+  background: radial-gradient(circle at 35% 30%, #d57b83 0%, #9b2933 60%, #7d1822 100%);
+  
+  
+  /* Posicionamento Inicial - Ajustado para o topo da nova alavanca maior */
   position: absolute;
-  top: 108px;
-  right: -36px;
-  transform: translateX(0);
-  cursor: pointer;
-  transition: transform 0.45s ease;
+  top: 90px; /* Subiu um pouco para acomodar a haste maior */
+  right: -42px; 
   z-index: 4;
+  cursor: pointer;
   box-shadow: 0 8px 12px rgba(84, 9, 17, 0.24);
+  
+  transition: background-color 0.2s;
 }
 
+/* Dispara a animação vertical longa */
 .machine-knob.spin {
-  transform: rotate(-35deg);
+  animation: pullVerticalLong 0.6s ease-in-out forwards;
 }
 
+.machine-knob:active {
+  filter: brightness(0.9);
+}
+
+/* O Trilho Escuro de Fundo (A fenda onde ela corre) */
 .machine-knob-rail {
   position: absolute;
-  right: -12px;
-  top: 114px;
+  right: -32px; 
+  top: 105px;
   width: 16px;
-  height: 170px;
+  height: 180px; /* Aumentado para dar mais espaço de curso */
   border-radius: 999px;
-  background: linear-gradient(180deg, #6a6460, #4c4744);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: linear-gradient(180deg, #302b29, #1c1918);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.6);
+  z-index: 3; 
 }
 
+/* A HASTE CINZA CLARA (Maior e mais comprida) */
 .machine-knob-rail::after {
   content: "";
   position: absolute;
-  left: 3px;
-  bottom: 8px;
+  left: 4px;
+  top: 0;
   width: 10px;
-  height: 62px;
+  height: 150px; /* Aumentado de 42px para 150px (Haste bem maior!) */
   border-radius: 999px;
-  background: #d7d3cf;
+  background: linear-gradient(90deg, #d7d3cf 0%, #9c9894 100%);
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  transform-origin: top center;
+  z-index: 3;
+}
+
+/* Faz a haste maior encolher sincronizada */
+.machine-knob-rail.spin::after {
+  animation: shrinkHasteLong 0.6s ease-in-out forwards;
 }
 
 .machine-slot {
@@ -1772,6 +1804,38 @@ select:focus {
   letter-spacing: 0.02em;
 }
 
+@keyframes pullVerticalLong {
+  0% {
+    top: 175px;
+    transform: scale(1);
+  }
+  50% {
+    top: 250px; /* Desce muito mais, indo até o final da fenda alongada */
+    transform: scale(0.8); /* Mantém o efeito de inclinação para trás */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  }
+  100% {
+    top: 90px; /* Retorna perfeitamente ao topo elevado */
+    transform: scale(1);
+  }
+}
+
+/* 2. Movimento de Sumir a Haste Comprida */
+@keyframes shrinkHasteLong {
+  0% {
+    height: 85px;
+    opacity: 1;
+  }
+  50% {
+    height: 0px; /* Encolhe completamente na fenda quando a bola atinge o final */
+    opacity: 0;
+  }
+  100% {
+    height: 85px; /* Restaura o tamanho original imponente na subida */
+    opacity: 1;
+  }
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -1884,6 +1948,11 @@ select:focus {
   .retro-card h2,
   .jackpot-card h2 {
     font-size: 1.45rem;
+  }
+
+  .jackpot-card {
+  overflow: visible !important; /* Garante que elementos fora do card apareçam */
+  padding-right: 1.5rem;        /* Dá uma folga extra no lado direito para a manivela */
   }
 
   .deck {
